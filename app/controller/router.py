@@ -6,6 +6,7 @@ from app.controller.controller_delete_car import router_delete_car
 from app.controller.controller_update_car import router_update_car
 from app.controller.controller_list_car import router_list_car
 from app.controller.controller_get_car import router_get_car
+from app.controller.controller_auth import router_auth
 
 
 router = APIRouter()
@@ -15,3 +16,4 @@ router.include_router(router_get_car)
 router.include_router(router_list_car)
 router.include_router(router_update_car)
 router.include_router(router_delete_car)
+router.include_router(router_auth)
