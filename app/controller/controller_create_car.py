@@ -9,7 +9,7 @@ router_create_car = APIRouter(tags=["Cars"])
     "/v1/cars",
     status_code=status.HTTP_201_CREATED,
     summary="Criar um novo carro",
-    description="Cadastra um novo carro no DynamoDB.",
+    description="Cadastra um novo carro no DynamoDB [ AWS ].",
     response_description="Carro criado com sucesso"
 )
 def create_car(dto: CarDTO):
