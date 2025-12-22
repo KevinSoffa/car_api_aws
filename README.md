@@ -54,7 +54,9 @@ Gerencia autenticação e autorização, incluindo:
 
 ### 🧪 Tests
 Contém testes automatizados com **pytest**, garantindo confiabilidade das operações no DynamoDB (mockadas ou em ambiente de teste).
-
+<div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/test_01.png"/>
+</div>
 ---
 
 ## 🎯 Objetivo da API
@@ -63,5 +65,6 @@ Contém testes automatizados com **pytest**, garantindo confiabilidade das opera
 - Abstrair a complexidade do Boto3 através de uma API REST
 - Servir como base para integrações com sistemas externos
 - Aplicar boas práticas de backend e cloud AWS
-
 ---
+
+## Desenvolvimento
