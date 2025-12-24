@@ -8,6 +8,22 @@ Esta aplicação é uma **API REST desenvolvida em FastAPI**, com foco em **oper
 O projeto segue boas práticas de **arquitetura em camadas**, garantindo organização, escalabilidade, facilidade de testes e manutenção do código.
 
 ---
+## 📑 Índice
+
+- [☁️ Tecnologias Utilizadas](#️-tecnologias-utilizadas)
+- [🧱 Arquitetura do Projeto](#-arquitetura-do-projeto)
+- [🔁 Separação de Camadas](#-separação-de-camadas)
+- [🎯 Objetivo da API](#-objetivo-da-api)
+- [📘 Swagger](#-swagger)
+- [📌 Exemplo de Uso](#-exemplo-de-uso)
+  - [🔐 Login](#-login)
+  - [🟢 Criar Carro](#-v1cars--post-)
+  - [🔵 Listar Carros](#-v1carslimitdefault_10next_pagetoken_next_page--get-)
+  - [🔵 Buscar Carro por ID](#-v1carscar_id--get-)
+  - [🟣 Atualizar Carro](#-v1carscar_id--patch-)
+  - [🔴 Deletar Carro](#-v1carscar_id--delete-)
+- [☁️ DynamoDB (AWS)](#️-dynamodb--aws-)
+---
 
 ## ☁️ Tecnologias Utilizadas
 - Python 🐍
@@ -24,7 +40,7 @@ O projeto segue boas práticas de **arquitetura em camadas**, garantindo organiz
 A aplicação segue o padrão de **arquitetura em camadas**, separando responsabilidades e evitando acoplamento entre regras de negócio, infraestrutura e exposição da API.
 ---
 
-## 🔁 Separação de Responsabilidades
+## 🔁 Separação de Camadas
 
 ### 🎮 Controller
 Camada responsável por expor os **endpoints REST**, validar as requisições e retornar as respostas HTTP.  
@@ -67,4 +83,138 @@ Contém testes automatizados com **pytest**, garantindo confiabilidade das opera
 - Aplicar boas práticas de backend e cloud AWS
 ---
 
-## Desenvolvimento
+## 📘Swagger
+#### `/docs`
+<div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/swagger_01.png"/>
+</div>
+
+## 📌Exemplo de Uso
+
+### 🔐`/login` **[ POST - Auth ]**
+**form-urlencoded**
+```
+username:{name_user}
+password:{password_user}
+```
+**Response**
+Status Code `http 200` OK
+```
+{
+	"access_token": "{token}",
+	"token_type": "bearer"
+}
+```
+
+---
+
+
+### 🟢`/v1/cars` **[ POST ]**
+**Body**
+```
+{
+  "nome": "string",
+  "marca": "string",
+  "modelo": "string",
+  "ano": 0,
+  "valor": 0
+}
+```
+**Response**
+
+Status Code `http 201` Criado com Sucesso
+```
+{
+  "car_id": "97109191-7372-44e1-954f-db6132a9ee08",
+  "nome": "Série 3",
+  "marca": "BMW",
+  "modelo": "320i M Sport",
+  "ano": 2023,
+  "valor": 320000
+}
+```
+---
+### 🔵`/v1/cars?limit={default_10}&next_page={token_next_page}` **[ GET ]**
+**Response**
+
+Status Code `http 200` OK
+```
+{
+	"items": [
+		{
+			"ano": 2024,
+			"marca": "Porsche",
+			"valor": 1000000,
+			"nome": "Carreira",
+			"car_id": "1f80f12a-eca1-4d59-9011-09bce23854f6",
+			"modelo": "GT Turbo"
+		},
+		{
+			"ano": 2023,
+			"marca": "Jeep",
+			"valor": 210000,
+			"nome": "Compass",
+			"car_id": "43fb0a33-4dad-47b2-9b15-c81c426de731",
+			"modelo": "Limited"
+		}
+	],
+	"next_page": "43fb0a33-4dad-47b2-9b15-c81c426de731",
+	"count": 2
+}
+```
+---
+### 🔵`/v1/cars/{car_id}` **[ GET ]**
+**Response**
+Status Code `http 200` OK
+```
+{
+	"ano": 2023,
+	"marca": "Tesla",
+	"valor": 380000,
+	"nome": "Model 3",
+	"car_id": "763efdf7-feb2-4035-a68d-12c48601f69f",
+	"modelo": "Long Range"
+}
+```
+----
+### 🟣`/v1/cars/{car_id}` **[ PATCH ]**
+**Body**
+```
+{
+  "nome": "string",
+  "marca": "string",
+  "modelo": "string",
+  "ano": 0,
+  "valor": 0
+}
+```
+**Response**
+Status Code `http 200` OK
+```
+{
+  "ano": 2023,
+  "marca": "Tesla",
+  "valor": 380001,
+  "nome": "Model 3",
+  "car_id": "763efdf7-feb2-4035-a68d-12c48601f69f",
+  "modelo": "Long Range"
+}
+```
+---
+### 🔴`/v1/cars/{car_id}` **[ DELETE ]**
+Status Code `http 200` OK
+**Response**
+```
+{
+  "message": "Car deleted"
+}
+```
+---
+## ☁️DynamoDB [ AWS ]
+<div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/aws_tabela.png"/>
+</div>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/aws_tabela_02.png"/>
+</div>
