@@ -1,7 +1,7 @@
 from app.service.service_list_car import service_list_car
+from app.security.dependencies import get_current_user
 from fastapi import APIRouter, Query, Depends
 from typing import Optional
-from app.security.dependencies import get_current_user
 
 
 router_list_car = APIRouter(tags=["Cars"])

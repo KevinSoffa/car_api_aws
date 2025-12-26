@@ -1,7 +1,7 @@
 from app.service.service_create_car import service_create_car
-from app.models.car_dto import CarDTO
-from fastapi import APIRouter, status, Depends
 from app.security.dependencies import get_current_user
+from fastapi import APIRouter, status, Depends
+from app.models.car_dto import CarDTO
 
 
 router_create_car = APIRouter(tags=["Cars"])

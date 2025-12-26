@@ -10,19 +10,20 @@ O projeto segue boas práticas de **arquitetura em camadas**, garantindo organiz
 ---
 ## 📑 Índice
 
-- [☁️ Tecnologias Utilizadas](#️-tecnologias-utilizadas)
-- [🧱 Arquitetura do Projeto](#-arquitetura-do-projeto)
-- [🔁 Separação de Camadas](#-separação-de-camadas)
-- [🎯 Objetivo da API](#-objetivo-da-api)
-- [📘 Swagger](#-swagger)
-- [📌 Exemplo de Uso](#-exemplo-de-uso)
-  - [🔐 Login](#-login)
-  - [🟢 Criar Carro](#-v1cars--post-)
-  - [🔵 Listar Carros](#-v1carslimitdefault_10next_pagetoken_next_page--get-)
-  - [🔵 Buscar Carro por ID](#-v1carscar_id--get-)
-  - [🟣 Atualizar Carro](#-v1carscar_id--patch-)
-  - [🔴 Deletar Carro](#-v1carscar_id--delete-)
-- [☁️ DynamoDB (AWS)](#️-dynamodb--aws-)
+- [☁️ Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [🧱 Arquitetura do Projeto](#arquitetura-do-projeto)
+- [🔁 Separação de Camadas](#separação-de-camadas)
+- [🎯 Objetivo da API](#objetivo-da-api)
+- [📘 Swagger](#swagger)
+- [📌 Exemplo de Uso](#exemplo-de-uso)
+  - [🔐 Login](#login)
+  - [🟢 Criar Carro](#v1cars-post)
+  - [🔵 Listar Carros](#v1cars-get)
+  - [🔵 Buscar Carro por ID](#v1carscar_id-get)
+  - [🟣 Atualizar Carro](#v1carscar_id-patch)
+  - [🔴 Deletar Carro](#v1carscar_id-delete)
+- [☁️ DynamoDB (AWS)](#dynamodb-aws)
+
 ---
 
 ## ☁️ Tecnologias Utilizadas

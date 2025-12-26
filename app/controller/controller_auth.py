@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-from fastapi.security import OAuth2PasswordRequestForm
 from app.security.jwt_handler import create_access_token
+from fastapi.security import OAuth2PasswordRequestForm
 from decouple import config
 
 
-# MOCK Usuários
+# MOCK Usuários [ Poderia vim de um banco ou usuário logado ]
 user_auth = config('USER_AUTH')
 password_auth = config('PASSWORD_AUTH')
 
