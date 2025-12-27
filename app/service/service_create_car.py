@@ -23,10 +23,10 @@ def service_create_car(dto: CarDTO):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="A marca deve ter no mínimo 3 strings"
         )
-    if len(dto.modelo.strip()) < 3:
+    if len(dto.modelo.strip()) < 2:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="O modelo deve ter no mínimo 3 string"
+            detail="O modelo deve ter no mínimo 2 string"
         )
     
     dao = CarDAO(

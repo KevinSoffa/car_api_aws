@@ -177,3 +177,4 @@ pyrightconfig.json
 
 # MEUS ARQUIVOS
 /test_aws.py
+/table_aws.py
