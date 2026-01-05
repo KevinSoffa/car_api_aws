@@ -88,9 +88,9 @@ Contém testes automatizados com **pytest**, garantindo confiabilidade das opera
 ---
 
 ## 📘Swagger
-#### `/docs`
+#### 📚`/docs`
 <div align="center">
-  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/swagger_01.png"/>
+  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/swagger_02.png"/>
 </div>
 
 ## 📌Exemplo de Uso
