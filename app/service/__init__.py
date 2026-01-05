@@ -3,3 +3,4 @@ from .service_delete_car import service_delete_car
 from .service_get_car import service_get_car
 from .service_list_car import service_list_car
 from .service_update_car import service_update_car
+from .service_auth import service_authenticate_user
