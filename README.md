@@ -23,6 +23,9 @@ O projeto segue boas práticas de **arquitetura em camadas**, garantindo organiz
   - [🟣 Atualizar Carro](#v1carscar_id--patch-)
   - [🔴 Deletar Carro](#v1carscar_id--delete-)
 - [☁️ DynamoDB (AWS)](#️dynamodb--aws-)
+  - [🗄️Tabelas](#️tables)
+    - [🗃️Table Cars](#️table-cars)
+    - [🗃️Table Users](#️table-users)
 
 ---
 
@@ -77,7 +80,7 @@ Contém testes automatizados com **pytest**, garantindo confiabilidade das opera
 ---
 
 ## 🎯 Objetivo da API
-- Criar registros no DynamoDb de forma segura e performática
+- Criar registros no DynamoDB de forma segura e performática
 - Atualizar registros no DynamoDB de forma segura e performática
 - Abstrair a complexidade do Boto3 através de uma API REST
 - Servir como base para integrações com sistemas externos
@@ -95,7 +98,7 @@ Contém testes automatizados com **pytest**, garantindo confiabilidade das opera
 ### 🔐`/login` **[ POST - Auth ]**
 **form-urlencoded**
 ```
-username:{name_user}
+username:{email_user}
 password:{password_user}
 ```
 **Response**
@@ -107,6 +110,18 @@ Status Code `http 200` OK
 }
 ```
 
+**Response**
+Status Code `http 401` Unauthorized
+```
+{
+	"detail": "Usuário ou senha inválidos"
+}
+```
+```
+{
+	"detail": "Token inválido ou expirado"
+}
+```
 ---
 
 
@@ -212,10 +227,70 @@ Status Code `http 200` OK
 ```
 ---
 ## ☁️DynamoDB [ AWS ]
-<div align="center">
-  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/aws_tabela.png"/>
-</div>
+### 🗄️Table's
 
 <div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/aws_tabelas.png"/>
+</div>
+
+### 🗃️Table `Cars`
+#### 🐍Script Python para criação da tabela na AWS
+```
+import boto3
+
+
+# ----------------------------
+# CRIACAO DO DB NA AWS
+#-----------------------------
+dynamodb = boto3.client("dynamodb", region_name="us-east-1")
+table_name = "Cars"
+
+response = dynamodb.create_table(
+    TableName=table_name,
+    AttributeDefinitions=[
+        {"AttributeName": "car_id", "AttributeType": "S"},
+    ],
+    KeySchema=[
+        {"AttributeName": "car_id", "KeyType": "HASH"},
+    ],
+    BillingMode="PAY_PER_REQUEST",
+)
+
+print("Tabela criada com sucesso:", response)
+```
+<div align="center">
   <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/aws_tabela_02.png"/>
+</div>
+
+---
+
+### 🗃️Table `Users`
+#### 🐍Script Python para criação da tabela na AWS
+```
+import boto3
+
+
+# ----------------------------
+# CRIAÇÃO DA TABELA USERS
+# ----------------------------
+dynamodb = boto3.client("dynamodb", region_name="us-east-1")
+
+table_name = "Users"
+
+response = dynamodb.create_table(
+    TableName=table_name,
+    AttributeDefinitions=[
+        {"AttributeName": "email", "AttributeType": "S"},
+    ],
+    KeySchema=[
+        {"AttributeName": "email", "KeyType": "HASH"},
+    ],
+    BillingMode="PAY_PER_REQUEST",
+)
+
+print("Tabela criada com sucesso:", response)
+```
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/car_api_aws/refs/heads/master/img/aws_tabela_users.png"/>
 </div>
